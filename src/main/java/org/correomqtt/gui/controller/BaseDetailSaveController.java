@@ -14,6 +14,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.XMLConstants;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -36,6 +37,7 @@ public abstract class BaseDetailSaveController extends BaseConnectionController 
     public String setXml(String finalMessage) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
             DocumentBuilder builder;
             builder = factory.newDocumentBuilder();
             Document document = builder.parse(new InputSource(new StringReader(finalMessage)));
